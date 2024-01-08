@@ -4,6 +4,7 @@
   imports = [
     inputs.nixos-generators.nixosModules.all-formats
     ./profiles/common.nix
+    ./profiles/spotify-connect.nix
   ];
 
   # --------------------------------------------------------------------------------------

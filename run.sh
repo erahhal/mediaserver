@@ -51,7 +51,6 @@ else
     GUI_FLAG=-nographic
 fi
 
-
 # @TODO: need to move to netdev bridge type?
 # SEE: https://futurewei-cloud.github.io/ARM-Datacenter/qemu/network-aarch64-qemu-guests/
 sudo cp $OVMF_NVRAM ./build/OVMF_VARS.fd
@@ -59,8 +58,6 @@ sudo chown $USER:users ./build/OVMF_VARS.fd
 # @TODO: What if virtiofsd is already running elsewhere? Can it be run as a service?
 sudo $VIRTIOFSD --socket-path /tmp/vhostqemu --shared-dir ./ --cache auto &
 pids[1]=$!
-    # -netdev tap,id=enp1s0,br=hfbr0,helper=$QEMU_BRIDGE_HELPER \
-    # -device e1000,netdev=enp1s0,mac=52:53:54:55:56:01 \
 sudo -E qemu-kvm \
     $GUI_FLAG \
     -cpu host \
@@ -75,6 +72,7 @@ sudo -E qemu-kvm \
     -smp 4 \
     -m 8G \
     -net nic \
+    -net user,hostfwd=tcp::2223-:22,hostfwd=tcp::8445-:443,hostfwd=tcp::8885-:80 \
     &
 pids[2]=$!
 

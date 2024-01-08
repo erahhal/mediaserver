@@ -19,10 +19,12 @@ build_image() {
     chmod 750 ./build/${HOST}.$EXT
 }
 
+# clear up disk space
+rm -rf ./build/*
+
 build_image mediaserver-rpi4 sd-aarch64-installer img.zst
 cd build
-zstd -d build/mediaserver-rpi4.img.zst
+zstd -d mediaserver-rpi4.img.zst
 rm mediaserver-rpi4.img.zst
 cd ..
-# build_image mediaserver-rpi4 sd-raspberrypi img
 build_image mediaserver-x86 qcow qcow2

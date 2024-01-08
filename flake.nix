@@ -76,7 +76,6 @@
           (import ./profiles/hardware-configuration.nix)
           (import ./profiles/virtual-machine.nix)
         ];
-        format = "qcow";
         specialArgs = {
           inherit inputs;
           inherit system;
