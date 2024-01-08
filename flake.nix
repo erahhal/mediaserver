@@ -57,6 +57,8 @@
           nixos-hardware.nixosModules.raspberry-pi-4
           (import ./configuration.nix)
           (import ./profiles/raspberry-pi.nix)
+          (import ./hosts/mediaserver-rpi4/hardware-configuration.nix)
+          (import ./hosts/mediaserver-rpi4/boot.nix)
         ];
         specialArgs = {
           inherit inputs;

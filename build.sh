@@ -8,4 +8,4 @@ then
     exit 1
 fi
 
-sudo nixos-rebuild switch --flake .#mediaserver-x86 -L
+sudo nixos-rebuild switch --flake .#mediaserver-rpi4 -L
