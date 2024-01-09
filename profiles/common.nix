@@ -102,7 +102,7 @@
     isNormalUser  = true;
     home  = "/home/mediaserver";
     description  = "Mediaserver User";
-    extraGroups  = [ "wheel" "networkmanager" ];
+    extraGroups  = [ "wheel" "networkmanager" "audio" "pulse" "pulse-access" ];
     # @TODO: Make this dynamic, not hard coded
     openssh.authorizedKeys.keys  = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNvmGn1/uFnfgnv5qsec0GC04LeVB1Qy/G7WivvvUZVBBDzp8goe1DsE8M8iqnBSin56gQZDWsd50co2MbFAWuqH2HxY7OGay7P/V2q+SziTYFva85WGl84qWvYMmdB+alAFBT3L4eH5cegC5NhNp+OGsQuq32RdojgXXQt6vyZnaOypuz90k3rqV6Rt+iBTLz6VziasCLcYydwOvi9f1q6YQwGPLKaupDrV6gxvoX9bXLdopqwnXPSE/Eqczxgwc3PefvAJPSd6TOqIXvbtpv/B3Evt5SPe2gq+qASc5K0tzgra8KAe813kkpq4FuKJzHbT+EmO70wiJjru7zMEhd erahhal@nfml-erahhalQFL" ];
     hashedPassword = "$6$5.6V9H0g5F47ubUm$e0N.GXZ9eoqmvpO9MjZlCISC9IIxKKcf0xtnuFyuXSQEQlfaazrS4kBhplDB6GCsQgwpOxdrX2DmcwbMiX/h30";
@@ -123,7 +123,7 @@
     hostPlatform = system;
     config = {
       ## Allow proprietary packages.
-      # allowUnfree = true;
+      allowUnfree = true;
       ## Allow broken packages.
       # allowBroken = true;
       packageOverrides = pkgs: {
@@ -151,6 +151,9 @@
   # Services
   # --------------------------------------------------------------------------------------
 
+  # Does this conflict with librespot?
+  services.resolved.enable = false;
+
   # Firmware/BIOS updates
   services.fwupd.enable = true;
 
@@ -158,8 +161,8 @@
   services.logind.killUserProcesses = false;
 
   # network locator e.g. scanners and printers
-  services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  # services.avahi.enable = true;
+  # services.avahi.nssmdns = true;
 
   services.gvfs.enable = true; # SMB mounts, trash, and other functionality
   services.tumbler.enable = true; # Thumbnail support for images

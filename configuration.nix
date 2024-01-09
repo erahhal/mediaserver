@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.nixos-generators.nixosModules.all-formats
+    # ./overlays/librespot.nix
     ./profiles/common.nix
     ./profiles/spotify-connect.nix
   ];

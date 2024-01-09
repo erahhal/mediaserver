@@ -59,6 +59,7 @@
           (import ./profiles/raspberry-pi.nix)
           (import ./hosts/mediaserver-rpi4/hardware-configuration.nix)
           (import ./hosts/mediaserver-rpi4/boot.nix)
+          (import ./hosts/mediaserver-rpi4/sound.nix)
         ];
         specialArgs = {
           inherit inputs;
