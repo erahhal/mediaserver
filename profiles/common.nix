@@ -152,7 +152,7 @@
   # --------------------------------------------------------------------------------------
 
   # Does this conflict with librespot?
-  services.resolved.enable = false;
+  services.resolved.enable = true;
 
   # Firmware/BIOS updates
   services.fwupd.enable = true;
@@ -161,8 +161,8 @@
   services.logind.killUserProcesses = false;
 
   # network locator e.g. scanners and printers
-  # services.avahi.enable = true;
-  # services.avahi.nssmdns = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
 
   services.gvfs.enable = true; # SMB mounts, trash, and other functionality
   services.tumbler.enable = true; # Thumbnail support for images
@@ -174,7 +174,15 @@
   services.printing.drivers = [ pkgs.brlaser ];
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    listenAddresses = [
+      {
+        addr = "0.0.0.0";
+	port = 22;
+      }
+    ];
+  };
 
   # This will save you money and possibly your life!
   ## Not supported on raspberry pi?

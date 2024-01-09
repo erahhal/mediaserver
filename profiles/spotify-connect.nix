@@ -6,7 +6,8 @@ let
   # cache-args = "--cache /var/cache/raspotify";
   volume-args = "--enable-volume-normalisation --volume-ctrl=linear --initial-volume=100";
   backend-args = "--backend=alsa";
-  zeroconf-args = "--zeroconf-port=5353";
+  zeroconf-port = 5354;
+  zeroconf-args = "--zeroconf-port=${toString zeroconf-port}";
   ## Allows for seeing device across the internet
   # options = "--username <USERNAME> --password <PASSWORD>";
 in
@@ -32,7 +33,6 @@ in
     mkdir -p /var/cache/spotify-connect
   '';
 
-  networking.firewall.allowedUDPPorts = [ 5353 ];
-  networking.firewall.allowedTCPPorts = [ 5353 ];
+  networking.firewall.allowedTCPPorts = [ zeroconf-port ];
 }
 
