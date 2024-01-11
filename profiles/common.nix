@@ -174,15 +174,7 @@
   services.printing.drivers = [ pkgs.brlaser ];
 
   # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    listenAddresses = [
-      {
-        addr = "0.0.0.0";
-	port = 22;
-      }
-    ];
-  };
+  services.openssh.enable = true;
 
   # This will save you money and possibly your life!
   ## Not supported on raspberry pi?

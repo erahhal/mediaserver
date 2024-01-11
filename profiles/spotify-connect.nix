@@ -20,7 +20,7 @@ in
 
       serviceConfig = {
         User = "mediaserver";
-	Group = "users";
+        Group = "users";
         PermissionsStartOnly = true;
         Restart = "always";
         RestartSec = 10;
