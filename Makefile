@@ -7,12 +7,12 @@ all: help
 help:
 	@echo Usage
 	@echo
-	@echo "  make setup                    prepare machine to run"
+	@echo "  make setup                    install Nix and dependencies (Fedora only at the moment)"
 	@echo "  make build-image              build qemu image on host"
 	@echo "  make build                    rebuild system from inside guest"
 	@echo "  make flash DEVICE=/dev/sda    flash raspberry pi"
-	@echo "  make run                      run mediaserver x86 image"
-	@echo "  make ssh                      SSH into running mediaserver kvm"
+	@echo "  make run                      run mediaserver x86 image locally for testing"
+	@echo "  make ssh                      SSH into running local mediaserver kvm"
 
 build-image:
 	./build-image.sh

@@ -57,37 +57,9 @@ if [ "$OS" == "Fedora Linux" ]; then
         sudo usermod -a -G nixbld $USER
         echo "User added to nixbld gropu. log out and back in again."
     fi
-
-    NM_BRIDGE_CONF=/etc/NetworkManager/system-connections/hrbr0.nmconnection
-    if [ ! -e $NM_BRIDGE_CONF ]; then
-sudo tee $NM_BRIDGE_CONF > /dev/null <<EOF
-[connection]
-id=hfbr0
-# uuid=509b481d-08a5-470d-a47d-eb871336b796
-type=bridge
-interface-name=hfbr0
-
-[ethernet]
-
-[bridge]
-
-[ipv4]
-method=auto
-
-[ipv6]
-addr-gen-mode=default
-method=auto
-
-[proxy]
-EOF
-        sudo chmod 600 $NM_BRIDGE_CONF
-        sudo systemctl restart NetworkManager
-    fi
-
-    QEMU_BRIDGE_CONF=/etc/qemu/bridge.conf
-    if ! grep -q hfbr0 $QEMU_BRIDGE_CONF; then
-        echo "allow hfbr0" | sudo tee -a $QEMU_BRIDGE_CONF
-    fi
+else
+    echo "Unsupported OS"
+    exit 1
 fi
 
 # Get free space on root partition

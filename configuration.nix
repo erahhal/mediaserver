@@ -1,9 +1,9 @@
-{ inputs, lib, ... }:
+{ inputs, hostParams, ... }:
 
 {
   imports = [
     inputs.nixos-generators.nixosModules.all-formats
-    # ./overlays/librespot.nix
+    ./modules/network-manager-wireless.nix
     ./profiles/common.nix
     ./profiles/spotify-connect.nix
   ];
@@ -33,7 +33,7 @@
 
   networking = {
     # @TODO: Make this UI configurable
-    hostName = "mediaserver";
+    hostName = hostParams.hostName;
     useNetworkd = true;
     networkmanager = {
       enable = true;
@@ -41,6 +41,12 @@
     wireless = {
       # Disable wpa_supplicant
       enable = false;
+      # Used by modules/network-manager-wireless.nix
+      networks = {
+        ${hostParams.wifiSSID} = {
+          psk = hostParams.wifiPassword;
+        };
+      };
     };
   };
 

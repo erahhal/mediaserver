@@ -28,6 +28,9 @@
     nixpkgs,
     ...
   }@inputs:
+  let
+    hostParams = import ./host-params.nix {};
+  in
   {
     nixosConfigurations = {
       # mediaserver-rpi4 =
@@ -65,6 +68,7 @@
         specialArgs = {
           inherit inputs;
           inherit system;
+          inherit hostParams;
         };
       };
       mediaserver-x86 =
@@ -83,6 +87,7 @@
         specialArgs = {
           inherit inputs;
           inherit system;
+          inherit hostParams;
         };
       };
     };

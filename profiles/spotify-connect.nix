@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, hostParams, ... }:
 let
   device-name = "mediaserver";
   bitrate = "320";
@@ -19,7 +19,7 @@ in
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
-        User = "mediaserver";
+        User = hostParams.username;
         Group = "users";
         PermissionsStartOnly = true;
         Restart = "always";
